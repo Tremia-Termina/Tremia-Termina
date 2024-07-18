@@ -52,7 +52,16 @@ Bullet = createBullet(Sprite, bullet_sprite, bullet_speed)
 BulletLeft = createBulletLeft(Sprite, bullet_sprite, bullet_speed, bullet_leftSpeed)
 BulletRight = createBulletRight(Sprite, bullet_sprite, bullet_speed, bullet_rightSpeed)
 BossBullet = createBossBullet(Sprite, boss_bullet_sprite, boss_bullet_minSpeed, boss_bullet_maxSpeed)
-
+class Missile(Sprite):
+    def __init__(self, sprite, position):
+        super().__init__(missile_sprite, position)
+        self.speed_x = missile_speed_x
+        self.speed_y = missile_speed_y
+    def update(self):
+        self.rect.x += self.speed_x
+        self.rect.y -= self.speed_y
+        if self.rect.bottom < 0:
+            self.kill()
 Enemy = createEnemy(Sprite, enemy_sprite, enemyMinSpeed, enemyMaxSpeed, screen_height, player)
 Boss = createBoss(Sprite, boss_sprite, boss_health, boss_leftSpeed, boss_rightSpeed, screen_width)
 DecreaseDifficulty = createDecreaseDifficulty(Sprite, decreaseDifficulty_sprite, boostMinSpeed, boostMaxSpeed, screen_height)
